@@ -1,0 +1,306 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+.app {
+  background-color: #DFD0B8;
+  background-color: rgb(77, 77, 77);
+  color: white;
+}
+
+/* Navbar */
+#nav {
+  /* position: fixed; */
+  /* width: 100vw; */
+  height: 10vh;
+}
+
+.nav-links {
+  background-color: #888888;
+  transition: all 0.6s linear;
+  border-radius: 10px;
+}
+
+.nav-links .link {
+  transition: 0.3s all ease-in-out;
+  letter-spacing: 1.2px;
+}
+
+.big-screen-link ,.big-screen-link .links{
+  display: none;
+}
+#home {
+  min-height: 90vh;
+}
+
+/* Home div */
+.other-info .info {
+  letter-spacing: 1.6px;
+}
+
+.other-info .download-btn {
+  background-color: rgb(208, 208, 208);
+  color: black;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease-in;
+}
+
+.other-info .download-btn:hover {
+  background-color: #888888;
+  color: white;
+}
+
+.gradiant-text {
+  -webkit-background-clip: text;
+  @apply bg-gradient-to-t from-blue-500 to-cyan-500 text-transparent;
+  overflow: hidden;
+  border-right: 2px solid #fff;
+  animation: typing-text steps(40) 3s infinite, blink ease 0.3s infinite;
+  text-wrap: nowrap;
+  display: inline-block;
+  width: max-content;
+  width: 0;
+}
+
+
+@keyframes typing-text {
+  from {
+    width: 0%;
+  }
+
+  to {
+    width: 250px;
+  }
+}
+
+@keyframes typing-text {
+  to {
+    border-color: transparent;
+  }
+}
+
+
+.project-container {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 3rem;
+  row-gap: 3rem;
+}
+
+.project-container .project {
+  background-color: #616060;
+  /* color:black; */
+  text-align: center;
+  cursor: pointer;
+
+  transition: 0.5s all linear;
+}
+
+.project-container .project:hover {
+  background-color: rgb(208, 208, 208);
+}
+
+.project-info .project-btn {
+  background-color: #888888;
+  /* padding: 8px; */
+  transition: 0.2s all linear;
+  padding: 5px 10px;
+}
+
+.project-info .project-btn:hover {
+  background-color: rgb(225, 225, 225);
+  color: #787878;
+}
+
+.scroll-down {
+  position: relative;
+  font-size: large;
+  animation: scrollDown 2s infinite;
+}
+
+@keyframes scrollDown {
+  0% {
+    top: 0;
+  }
+
+  100% {
+    top: 12px;
+  }
+}
+
+#technology .technology-list {
+  padding-top: 10px;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  /* column-gap: 2rem; */
+  row-gap: 2rem;
+}
+
+#technology .technology-list .technology {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+/* Education Section */
+
+#education .schools ul {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#education .schools .events {
+  display: flex;
+  flex-direction: column;
+}
+
+
+/* Footer */
+footer {
+  background-color: rgb(30, 30, 30);
+  width: 100%;
+  display: flex;
+  padding: 0 20px;
+  justify-content: space-between;
+  align-items: center;
+  height: 8vh;
+}
+
+footer .icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.footer-icon {
+  height: 29px;
+  border-radius: 50%;
+  padding: 5px;
+  background-color: white;
+  transition: 0.3s ease-in all;
+}
+
+.footer-icon:hover {
+  box-shadow: 5px 10px #888888;
+}
+
+/* Moving circle  */
+.circle-container {
+  position: absolute;
+  width: 100%;
+  /* z-index: 1; */
+  height: 100%;
+}
+
+.circle {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background-color: transparent;
+  /* Circle color */
+  border: 2px solid white;
+  border-radius: 50%;
+  transition: transform 0.4s ease;
+  /* Transition for rotation */
+}
+
+.circle:hover {
+  transform: rotate(360deg);
+  /* Rotate on hover */
+}
+
+
+
+/* Media queries */
+@media (min-width:768px) {
+  #home {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+@media (min-width:1100px) {
+  .bar-icon {
+    display: none;
+  }
+
+  #nav {
+    padding-top: 20px;
+    width: 70vw;
+    margin: 0 auto;
+
+  }
+
+  .big-screen-link ,.big-screen-link .links{
+    display: flex;
+    gap:25px;
+    transition: 0.2s all line;
+  }
+  .big-screen-link .link:hover{
+    text-decoration: underline;
+  }
+  #home {
+    padding-top: 70px;
+    width: 70vw;
+    margin: 0 auto;
+  }
+  #home h1,#education h1, #technology h1 , #projects h1{
+    letter-spacing: 2px;
+  }
+
+  #home .home-pic {
+    right:25vw;
+    top:80;
+  }
+
+  #projects .project-container{
+    margin: 0 auto;
+   grid-template-columns: repeat(2,300px);
+   padding:30px;
+   justify-self: center;
+   justify-content: center;
+   align-items: center;
+   align-self: center;
+  }
+ 
+  #projects .project-container .project img{
+    width: 100%;
+ }
+  .other-info .info {
+    letter-spacing: 1.6px;
+    font-size: 18px;
+    line-height: 30px;
+  }
+  #education{
+    width: 70vw;
+    padding:30px;
+    margin:0 auto;
+  }
+
+  #education .events{
+    padding: 10px;
+  }
+  #education .events p{
+   letter-spacing: 2px;
+  }
+#technology h1,#education h1{
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+  footer{
+    padding: 40px 200px;
+    margin:0 auto;
+  }
+}
