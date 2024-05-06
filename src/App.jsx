@@ -4,6 +4,7 @@ import {
   faBars,
   faAngleDown,
   faDownload,
+  faXmark
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 import HTML from "./svg/html5.svg";
@@ -80,12 +81,15 @@ function App() {
           </button>
           <button onClick={()=> setNavShow(!navShow)}>
             <FontAwesomeIcon
-              className="bar-icon text-xl align-middle pr-2"
+              className={`bar-icon text-xl align-middle pr-2 ${navShow?"hidden":"visible"}`}
               icon={faBars}
+            />
+            <FontAwesomeIcon icon={faXmark} 
+            className={`bar-icon text-xl align-middle pr-2 ${navShow?"visible":"hidden"}`}
             />
           </button>
         </div>
-        <ul className={`nav-links absolute right-0 p-2 px-8 -bottom-24 flex flex-col gap-1 ${navShow? "block":"hidden"}`}>
+        <ul className={`nav-links absolute right-0 p-2 px-8 -bottom-32 flex flex-col gap-1 ${navShow? "block":"hidden"}`}>
           <a href="#home" className="link">Home</a>
           <a href="#projects" className="link">Projects</a>
           <a href="#technology" className="link">Technology</a>
@@ -110,7 +114,7 @@ function App() {
               Download Resume
             </button>
           </section>
-          <div className="absolute right-16 top-80 home-pic">
+          <div className="pp-container absolute right-1 top-80 home-pic">
             <img
               src={PP}
               alt=""
@@ -222,19 +226,19 @@ function App() {
         <div className="icons">
           <a
             className="icon"
-            href="http://"
+            href="https://www.linkedin.com/in/bibek-thapa-62823b288/?trk=opento_sprofile_details"
             target="_blank"
             rel="noopener noreferrer"
           >
             <img src={LINKEDIN} className="footer-icon" alt="" />
           </a>
-          <a href="http://" target="_blank" rel="noopener noreferrer">
+          <a href="https://github.com/BibekThapa1" target="_blank" rel="noopener noreferrer">
             <img src={GITHUB} className="footer-icon" alt="" />
           </a>
-          <a href="http://" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.facebook.com/bibekthapa154" target="_blank" rel="noopener noreferrer">
             <img src={FACEBOOK} className="footer-icon" alt="" />
           </a>
-          <a href="http://" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.instagram.com/bibek_thapa1/" target="_blank" rel="noopener noreferrer">
             <img src={INSTAGRAM} className="footer-icon" alt="" />
           </a>
         </div>
