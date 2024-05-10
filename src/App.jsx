@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faAngleDown,
   faDownload,
-  faXmark
+  faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import "./App.css";
 import HTML from "./svg/html5.svg";
@@ -19,47 +19,91 @@ import FACEBOOK from "./svg/facebook.svg";
 import INSTAGRAM from "./svg/instagram.svg";
 import PP from "./images/1714827096409.jpg";
 import ChatIn from "./images/chatIn.png";
-import MegaBlog from "./images/megaBlog.png"
+import MegaBlog from "./images/megaBlog.png";
 
 function App() {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: 0, y: 0 + 40 });
+  const [fixednav, setFixednav] = useState(false);
   const [hover, setHover] = useState(false);
   const [navShow, setNavShow] = useState(false);
+  let navRef = useRef(null);
 
-  const handleMouseEnter = () => {
-    setHover(true);
-  };
-
-  const handleMouseLeave = () => {
-    setHover(false);
-  };
+  // Download resume
+  const handleDownload = (e) => {
+    e.preventDefault();
+    const link = document.createElement('a');
+    link.href = '../public/Resume.pdf'; 
+    link.download = 'Resume.pdf'; 
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+};
 
   useEffect(() => {
     const updatePosition = (e) => {
-      setPosition({ x: e.clientX - 45, y: e.clientY - 5 });
+      setPosition({ x: e.clientX - 25, y: e.clientY - 25 });
     };
-    document.addEventListener("mousemove", updatePosition);
+    document.addEventListener("mousemove", (e) => {
+      updatePosition(e);
+      let cursor = document.getElementById("moving-cursor");
+      cursor.style.display = "block";
+    });
+    
+     // Scroll functin
+  const handleScroll = (e) => {
+    console.log(window.scrollY)
+    console.log(nav.offsetHeight)
+    if (window.scrollY  > nav.offsetHeight) {
+      console.log("entered the true block")
+      setFixednav(true);
+      console.log(fixednav)
+    } else if(window.scrollY  < nav.offsetHeight){
+      console.log("entered the false block")
 
+      setFixednav(false);
+    }
+  };
+
+    document.addEventListener("scroll", handleScroll);
     return () => {
       document.removeEventListener("mousemove", updatePosition);
     };
   }, []);
 
+  const handleMouseEnter = () => {
+    setHover(true);
+  };
+  const handleMouseLeave = () => {
+    setHover(false);
+  };
+
   return (
     <div className="app">
-      {/* <div className="circle-container">
-        <div
-          className="circle"
-          style={{ left: position.x, top: position.y }}
-        ></div>
-      </div> */}
-      <nav id="nav" className="p-3 pl-4 flex justify-between relative ">
+      <div
+        id="moving-cursor"
+        style={{ left: position.x, top: position.y }}
+      ></div>
+      <nav
+        ref={navRef}
+        id="nav"
+        className={`p-3 pl-4 py-3 flex justify-between ${
+          fixednav ? "nav-fixed" : "nav-relative"
+        }`}
+      >
         <div className="italic text-xl ">Bibek's Portfolio</div>
         <div className="big-screen-link links">
-        <a href="#home" className=" link">Home</a>
-          <a href="#projects" className="link">Projects</a>
-          <a href="#technology" className="link">Technology</a>
-          <a href="#education" className="link">Education</a>
+          <a href="#home" className=" link">
+            Home
+          </a>
+          <a href="#projects" className="link">
+            Projects
+          </a>
+          <a href="#technology" className="link">
+            Technology
+          </a>
+          <a href="#education" className="link">
+            Education
+          </a>
         </div>
         <div>
           <button
@@ -70,6 +114,7 @@ function App() {
             <FontAwesomeIcon
               className="text-xl align-middle pr-6"
               icon={faDownload}
+              onClick={handleDownload}
             />
             <p
               className={`resume-text absolute text-xs -left-3 ${
@@ -79,21 +124,38 @@ function App() {
               Resume
             </p>
           </button>
-          <button onClick={()=> setNavShow(!navShow)}>
+          <button onClick={() => setNavShow(!navShow)}>
             <FontAwesomeIcon
-              className={`bar-icon text-xl align-middle pr-2 ${navShow?"hidden":"visible"}`}
+              className={`bar-icon text-xl align-middle pr-2 ${
+                navShow ? "hidden" : "visible"
+              }`}
               icon={faBars}
             />
-            <FontAwesomeIcon icon={faXmark} 
-            className={`bar-icon text-xl align-middle pr-2 ${navShow?"visible":"hidden"}`}
+            <FontAwesomeIcon
+              icon={faXmark}
+              className={`bar-icon text-xl align-middle pr-2 ${
+                navShow ? "visible" : "hidden"
+              }`}
             />
           </button>
         </div>
-        <ul className={`nav-links absolute right-0 p-2 px-8 -bottom-32 flex flex-col gap-1 ${navShow? "block":"hidden"}`}>
-          <a href="#home" className="link">Home</a>
-          <a href="#projects" className="link">Projects</a>
-          <a href="#technology" className="link">Technology</a>
-          <a href="#education" className="link">Education</a>
+        <ul
+          className={`nav-links absolute right-0 p-2 px-8 -bottom-40 flex flex-col gap-1 ${
+            navShow ? "block" : "hidden"
+          }`}
+        >
+          <a href="#home" className="link">
+            Home
+          </a>
+          <a href="#projects" className="link">
+            Projects
+          </a>
+          <a href="#technology" className="link">
+            Technology
+          </a>
+          <a href="#education" className="link">
+            Education
+          </a>
         </ul>
       </nav>
       <body>
@@ -110,7 +172,7 @@ function App() {
               Seeking to apply development skills with focus on collaboration,
               communication, and passion
             </p>
-            <button className="download-btn p-3 ml-6 rounded-xl ">
+            <button className="download-btn p-3 ml-6 rounded-xl relative" onClick={handleDownload}>
               Download Resume
             </button>
           </section>
@@ -134,22 +196,63 @@ function App() {
           </h1>
           <div className="project-container">
             <div className="project bg-white rounded-md w-full p-2">
-              <img src={ChatIn} alt="" className="h-48 w-auto object-cover rounded-xl" />
+              <img
+                src={ChatIn}
+                alt=""
+                className="h-48 w-auto object-cover rounded-xl"
+              />
               <div className="project-info ">
                 <p className="pt-3">Chat-In App</p>
                 <div className="w-full flex justify-evenly pt-3">
-                  <button className="project-btn rounded-xl"><a href="https://github.com/BibekThapa1/Chat-IN-app" target="_blank" rel="noopener noreferrer"> Github</a></button>
-                  <button className="project-btn rounded-xl"><a href="https://chat-in-app.vercel.app/" target="_blank" rel="noopener noreferrer">Visit site</a></button>
+                  <button className="project-btn rounded-xl">
+                    <a
+                      href="https://github.com/BibekThapa1/Chat-IN-app"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {" "}
+                      Github
+                    </a>
+                  </button>
+                  <button className="project-btn rounded-xl">
+                    <a
+                      href="https://chat-in-app.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit site
+                    </a>
+                  </button>
                 </div>
               </div>
             </div>
             <div className="project bg-white rounded-md min-w-full p-3">
-              <img src={MegaBlog} alt="" className="h-48 w-auto object-fill rounded-xl" />
+              <img
+                src={MegaBlog}
+                alt=""
+                className="h-48 w-auto object-fill rounded-xl"
+              />
               <div className="project-info">
-              <p className="pt-3">Blog App</p>
+                <p className="pt-3">Blog App</p>
                 <div className="w-full flex justify-evenly pt-3">
-                  <button className="project-btn rounded-xl"><a href="https://github.com/BibekThapa1/mega-blog" target="_blank" rel="noopener noreferrer">Github</a></button>
-                  <button className="project-btn rounded-xl"><a href="https://mega-blog-ivory-psi.vercel.app/" target="_blank" rel="noopener noreferrer">Visit site</a></button>
+                  <button className="project-btn rounded-xl">
+                    <a
+                      href="https://github.com/BibekThapa1/mega-blog"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Github
+                    </a>
+                  </button>
+                  <button className="project-btn rounded-xl">
+                    <a
+                      href="https://mega-blog-tawny-beta.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit site
+                    </a>
+                  </button>
                 </div>
               </div>
             </div>
@@ -232,13 +335,25 @@ function App() {
           >
             <img src={LINKEDIN} className="footer-icon" alt="" />
           </a>
-          <a href="https://github.com/BibekThapa1" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://github.com/BibekThapa1"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={GITHUB} className="footer-icon" alt="" />
           </a>
-          <a href="https://www.facebook.com/bibekthapa154" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.facebook.com/bibekthapa154"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={FACEBOOK} className="footer-icon" alt="" />
           </a>
-          <a href="https://www.instagram.com/bibek_thapa1/" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.instagram.com/bibek_thapa1/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <img src={INSTAGRAM} className="footer-icon" alt="" />
           </a>
         </div>

@@ -11,13 +11,28 @@
   background-color: #DFD0B8;
   background-color: rgb(77, 77, 77);
   color: white;
+  cursor:grab;
+  position: relative;
 }
 
 /* Navbar */
 #nav {
-  /* position: fixed; */
+  
+  background: rgb(77, 77, 77) ;
   /* width: 100vw; */
-  height: 10vh;
+  height: 7vh;
+  z-index:10;
+}
+.nav-relative{
+  position: relative;
+}
+.nav-fixed{
+  position: fixed;
+  top:0;
+  width:100%;
+  padding-bottom: 5px;
+  left:50%;
+  transform:translateX(-50%) ;
 }
 
 .nav-links {
@@ -25,20 +40,26 @@
   transition: all 0.6s linear;
   border-radius: 10px;
   width: 70%;
-  justify-self: end;  
+  justify-self: end;
 }
 
 .nav-links .link {
   transition: 0.3s all ease-in-out;
   letter-spacing: 1.2px;
-  padding:5px;
+  padding: 5px;
 }
 
-.big-screen-link ,.big-screen-link .links{
+.big-screen-link,
+.big-screen-link .links {
   display: none;
 }
+
 #home {
   min-height: 85vh;
+}
+
+button{
+  z-index: 2;
 }
 
 /* Home div */
@@ -46,12 +67,28 @@
   letter-spacing: 1.6px;
 }
 
+/* #home h1{
+  color: 6ede8a;
+
+} */
+
+#education h1,
+#technology h1,
+#projects h1 {
+  color: #6ede8a;
+}
+
+
 .other-info .download-btn {
   background-color: rgb(208, 208, 208);
   color: black;
   cursor: pointer;
   z-index: 2;
   transition: all 0.3s ease-in;
+}
+
+.home-pic img{
+  z-index:-1;
 }
 
 .other-info .download-btn:hover {
@@ -111,8 +148,9 @@
 .project-container .project:hover {
   background-color: rgb(208, 208, 208);
 }
-.project-container .project img{
-  height:150px ;
+
+.project-container .project img {
+  height: 150px;
 }
 
 
@@ -181,6 +219,7 @@ footer {
   padding: 0 20px;
   justify-content: space-between;
   align-items: center;
+  font-size: 13px;
   height: 8vh;
 }
 
@@ -205,52 +244,36 @@ footer .icons {
   box-shadow: 5px 10px #888888;
 }
 
-/* Moving circle  */
-.circle-container {
-  position: absolute;
-  width: 100%;
-  /* z-index: 1; */
-  height: 100%;
-}
-
-.circle {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background-color: transparent;
-  /* Circle color */
-  border: 2px solid white;
-  border-radius: 50%;
-  transition: transform 0.4s ease;
-  /* Transition for rotation */
-}
-
-.circle:hover {
-  transform: rotate(360deg);
-  /* Rotate on hover */
-}
-
-
-
 /* Media queries */
 @media (min-width:768px) {
+  #nav{
+    height: 10vh;
+  }
   #home {
     padding-left: 50px;
     padding-right: 50px;
   }
+
   #home {
     min-height: 90vh;
-  } 
+  }
+
+  footer{
+    font-size: 15px;
+  }
+
 }
+
 @media (min-width:1100px) {
   .bar-icon {
     display: none;
   }
-  .project-container .project img{
-    height:192px ;
+
+  .project-container .project img {
+    height: 192px;
   }
 
-  
+
   #nav {
     padding-top: 20px;
     width: 70vw;
@@ -258,82 +281,116 @@ footer .icons {
 
   }
 
-  .big-screen-link ,.big-screen-link .links{
+  .big-screen-link,
+  .big-screen-link .links {
     display: flex;
-    gap:25px;
+    gap: 25px;
     transition: 0.2s all line;
   }
-  .big-screen-link .link:hover{
+
+  .big-screen-link .link:hover {
     text-decoration: underline;
   }
+
   #home {
     padding-top: 70px;
     width: 70vw;
     margin: 0 auto;
   }
-  #home .pp-container{
-    top:250px;
+
+  #home .pp-container {
+    top: 250px;
   }
-  #home img{
+
+  #home img {
     height: 16rem;
     /* margin-bottom: 5rem; */
   }
-  #home h1,#education h1, #technology h1 , #projects h1{
+
+  #home h1,
+  #education h1,
+  #technology h1,
+  #projects h1 {
     letter-spacing: 2px;
     font-size: 2rem;
-    color: greenyellow;
   }
 
   #home .home-pic {
-    right:25vw;
-    top:80;
+    right: 25vw;
+    top: 80;
   }
 
-  #projects .project-container{
+  #projects .project-container {
     margin: 0 auto;
-   grid-template-columns: repeat(2,300px);
-   padding:30px;
-   justify-self: center;
-   justify-content: center;
-   align-items: center;
-   align-self: center;
+    grid-template-columns: repeat(2, 300px);
+    padding: 30px;
+    justify-self: center;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
   }
- 
-  #projects .project-container .project img{
+
+  #projects .project-container .project img {
     width: 100%;
- }
+  }
+
   .other-info .info {
     letter-spacing: 1.6px;
     font-size: 18px;
     line-height: 30px;
   }
-  #education{
+
+  #education {
     width: 70vw;
-    padding:30px;
-    margin:0 auto;
+    padding: 30px;
+    margin: 0 auto;
   }
 
-  #technology{
-    padding-left:10%;
-    padding-right:10%;
+  #technology {
+    padding-left: 10%;
+    padding-right: 10%;
   }
 
-  #technology .technology img{
+  #technology .technology img {
     height: 3rem;
   }
-  #education .events{
+
+  #education .events {
     padding: 10px;
   }
-  #education .events p{
-   letter-spacing: 2px;
+
+  #education .events p {
+    letter-spacing: 2px;
   }
-#technology h1,#education h1{
-  padding-top: 50px;
-  padding-bottom: 50px;
+
+  #technology h1,
+  #education h1 {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+
+  footer {
+    padding: 40px 200px;
+    margin: 0 auto;
+    font-size: 1.1rem;
+  }
 }
 
-  footer{
-    padding: 40px 200px;
-    margin:0 auto;
-  }
+/* 
+
+Styling the cursor
+
+*/
+#moving-cursor {
+  height: 50px;
+  width: 50px;
+  position: fixed;
+  background-color: #e7c82f;
+  border-radius: 50%;
+  transition: 0.3s all ease-out;
+  display: none;
+}
+
+#moving-cursor:hover{
+  transform: scale(0.5);
 }
