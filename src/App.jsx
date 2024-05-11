@@ -51,15 +51,9 @@ function App() {
     
      // Scroll functin
   const handleScroll = (e) => {
-    console.log(window.scrollY)
-    console.log(nav.offsetHeight)
     if (window.scrollY  > nav.offsetHeight) {
-      console.log("entered the true block")
       setFixednav(true);
-      console.log(fixednav)
     } else if(window.scrollY  < nav.offsetHeight){
-      console.log("entered the false block")
-
       setFixednav(false);
     }
   };
