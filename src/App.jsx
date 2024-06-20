@@ -12,6 +12,9 @@ import JS from "./svg/javascript.svg";
 import TAILWIND from "./svg/tailwind-css.svg";
 import REACT from "./svg/react.svg";
 import GIT from "./svg/git.svg";
+import NODE from "./svg/node.png";
+import EXPRESS from "./svg/express.png";
+import MONGODB from "./svg/mongodb.svg"
 import CSS from "./svg/css.svg";
 import LINKEDIN from "./svg/linkedin.svg";
 import GITHUB from "./svg/github.svg";
@@ -20,6 +23,7 @@ import INSTAGRAM from "./svg/instagram.svg";
 import PP from "./images/1714827096409.jpg";
 import ChatIn from "./images/chatIn.png";
 import MegaBlog from "./images/megaBlog.png";
+import YoutubeBackend from "./images/youtube-backend.png"
 
 function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 + 40 });
@@ -38,6 +42,13 @@ function App() {
     link.click();
     document.body.removeChild(link);
 };
+
+  const navBtns = document.querySelectorAll("nav ul a");
+  navBtns.forEach((btn)=>{
+    btn.addEventListener("click",()=>{
+      setNavShow(!navShow)
+    })
+  })
 
   useEffect(() => {
     const updatePosition = (e) => {
@@ -156,8 +167,12 @@ function App() {
         <div id="home" className="flex justify-between flex-col">
           <section className="info pl-10 pt-20">
             <h1 className="text-xl">I am Bibek Thapa,</h1>
-            <h1 className="text-xl font-bold gradiant-text">
+            <h1 className="text-xl font-bold gradiant-text mt-2">
               Frontend developer
+            </h1>
+            <br/>
+            <h1 className="text-xl font-bold gradiant-text">
+              Backend developer
             </h1>
           </section>
           <section className="other-info ">
@@ -189,6 +204,37 @@ function App() {
             Projects
           </h1>
           <div className="project-container">
+            <div className="project bg-white rounded-md w-full p-2">
+              <img
+                src={YoutubeBackend}
+                alt=""
+                className="h-48 w-auto object-cover rounded-xl"
+              />
+              <div className="project-info ">
+                <p className="pt-3">Youtube backend</p>
+                <div className="w-full flex justify-evenly pt-3">
+                  <button className="project-btn rounded-xl">
+                    <a
+                      href="https://github.com/BibekThapa1/youtube-backend"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {" "}
+                      Github
+                    </a>
+                  </button>
+                  {/* <button className="project-btn rounded-xl">
+                    <a
+                      href="https://chat-in-app.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Visit site
+                    </a>
+                  </button> */}
+                </div>
+              </div>
+            </div>
             <div className="project bg-white rounded-md w-full p-2">
               <img
                 src={ChatIn}
@@ -284,6 +330,18 @@ function App() {
             <div className="technology">
               <img src={REACT} alt="" className="h-10" />
               <h3>React</h3>
+            </div>
+            <div className="technology">
+              <img src={NODE} alt="" className="h-10" />
+              <h3>Node.js</h3>
+            </div>
+            <div className="technology">
+              <img src={EXPRESS} alt="" className="h-10" />
+              <h3>Express.js</h3>
+            </div>
+            <div className="technology">
+              <img src={MONGODB} alt="" className="h-10" />
+              <h3>MongoDB</h3>
             </div>
             <div className="technology">
               <img src={TAILWIND} alt="" className="h-10" />
