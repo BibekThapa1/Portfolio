@@ -398,7 +398,7 @@ function App() {
             <img src={GITHUB} className="footer-icon" alt="" />
           </a>
           <a
-            href="https://www.facebook.com/bibekthapa154"
+            href="https://www.facebook.com/profile.php?id=61559759262473"
             target="_blank"
             rel="noopener noreferrer"
           >
