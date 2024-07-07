@@ -14,7 +14,7 @@ import REACT from "./svg/react.svg";
 import GIT from "./svg/git.svg";
 import NODE from "./svg/node.png";
 import EXPRESS from "./svg/express.png";
-import MONGODB from "./svg/mongodb.svg"
+import MONGODB from "./svg/mongodb.svg";
 import CSS from "./svg/css.svg";
 import LINKEDIN from "./svg/linkedin.svg";
 import GITHUB from "./svg/github.svg";
@@ -23,7 +23,7 @@ import INSTAGRAM from "./svg/instagram.svg";
 import PP from "./images/1714827096409.jpg";
 import ChatIn from "./images/chatIn.png";
 import MegaBlog from "./images/megaBlog.png";
-import YoutubeBackend from "./images/youtube-backend.png"
+import YoutubeBackend from "./images/youtube-backend.png";
 
 function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 + 40 });
@@ -35,20 +35,20 @@ function App() {
   // Download resume
   const handleDownload = (e) => {
     e.preventDefault();
-    const link = document.createElement('a');
-    link.href = '../public/Resume.pdf'; 
-    link.download = 'Resume.pdf'; 
+    const link = document.createElement("a");
+    link.href = "../public/Resume.pdf";
+    link.download = "Resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-};
+  };
 
   const navBtns = document.querySelectorAll("nav ul a");
-  navBtns.forEach((btn)=>{
-    btn.addEventListener("click",()=>{
-      setNavShow(!navShow)
-    })
-  })
+  navBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      setNavShow(!navShow);
+    });
+  });
 
   useEffect(() => {
     const updatePosition = (e) => {
@@ -59,15 +59,15 @@ function App() {
       let cursor = document.getElementById("moving-cursor");
       cursor.style.display = "block";
     });
-    
-     // Scroll functin
-  const handleScroll = (e) => {
-    if (window.scrollY  > nav.offsetHeight) {
-      setFixednav(true);
-    } else if(window.scrollY  < nav.offsetHeight){
-      setFixednav(false);
-    }
-  };
+
+    // Scroll functin
+    const handleScroll = (e) => {
+      if (window.scrollY > nav.offsetHeight) {
+        setFixednav(true);
+      } else if (window.scrollY < nav.offsetHeight) {
+        setFixednav(false);
+      }
+    };
 
     document.addEventListener("scroll", handleScroll);
     return () => {
@@ -170,7 +170,7 @@ function App() {
             <h1 className="text-xl font-bold gradiant-text mt-2">
               Frontend developer
             </h1>
-            <br/>
+            <br />
             <h1 className="text-xl font-bold gradiant-text">
               Backend developer
             </h1>
@@ -181,7 +181,10 @@ function App() {
               Seeking to apply development skills with focus on collaboration,
               communication, and passion
             </p>
-            <button className="download-btn p-3 ml-6 rounded-xl relative" onClick={handleDownload}>
+            <button
+              className="download-btn p-3 ml-6 rounded-xl relative"
+              onClick={handleDownload}
+            >
               Download Resume
             </button>
           </section>
